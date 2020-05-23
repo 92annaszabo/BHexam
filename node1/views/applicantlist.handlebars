@@ -1,0 +1,75 @@
+<div  class='text-right'>
+
+    <a href='/applicants?edit=true'>Manage Applicants</a>
+</div>
+<h3>Waiting for first interview</h3>
+<table class=" table table-hover table-bordered mb-3">
+    <thead class='table'>
+        <th class='text-left p-3'> Name</th>
+        <th class='clear-border p-3'>Email</th>
+    </thead>
+    <tbody class='table'>
+        
+        {{#each interview1}}
+        <tr>
+            <td class='text-left clear-border p-3'> {{this.name}} </td>
+            <td class="text-right">{{this.email}}</td>
+        </tr>
+        {{/each}}
+       
+    </tbody>
+</table>
+
+<h3>Waiting for second interview</h3>
+<table class=" table table-hover table-bordered mb-3">
+    <thead class='table'>
+        <th class='text-left p-3'> Name</th>
+        <th class='clear-border p-3'>Email</th>
+    </thead>
+    <tbody class='table'>
+        
+        {{#each interview2}}
+        <tr>
+            <td class='text-left clear-border p-3'> {{this.name}} </td>
+            <td class="text-right">{{this.email}}</td>
+        </tr>
+        {{/each}}
+       
+    </tbody>
+</table>
+
+<h3>Successful applicants</h3>
+<table class=" table table-hover table-bordered mb-3">
+    <thead class='table'>
+        <th class='text-left p-3'> Name</th>
+        <th class='clear-border p-3'>Email</th>
+    </thead>
+    <tbody class='table'>
+        
+        {{#each approved}}
+        <tr>
+            <td class='text-left clear-border p-3'> {{this.name}} </td>
+            <td class="text-right">{{this.email}}</td>
+        </tr>
+        {{/each}}
+       
+    </tbody>
+</table>
+
+<h3>Rejected applicants</h3>
+<table class=" table table-hover table-bordered mb-3">
+    <thead class='table'>
+        <th class='text-left p-3'> Name</th>
+        <th class='clear-border p-3'>Email</th>
+    </thead>
+    <tbody class='table'>
+        
+        {{#each rejected}}
+        <tr>
+            <td class='text-left clear-border p-3'> {{this.name}} </td>
+            <td class="text-right">{{this.email}}</td>
+        </tr>
+        {{/each}}
+       
+    </tbody>
+</table>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Map</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+  <style>
+      .cell, .earth, .water {
+          height: 40px;
+          width: 40px;
+          border: 1px solid black;
+      }
+
+      .earth {
+          background-color:lightgreen
+      }
+      .water {
+          background-color: aqua;
+      }
+  </style>
+</head>
+<body class='static'>
+
+<div class="container static">
+    <button class='static' onclick='showMapForm()'>New Map</button>
+
+    <div id='newMapForm' class='d-none static'>
+        <label class='static' for='rows'>How many rows do you want?</label>
+        <input class='static' type='number' id='rows' name='rows'>
+        <label class='static' for='cells'>How many cells do you want in a row?</label>
+        <input class='static' type='number' id='cells' name='cells'>
+        <button class='static' onclick='generateMap()'>Generate Map</button>
+    </div>
+    <div id='terrainChooseer' class='d-none static'>
+        <div class='static'>terrain</div>
+        <button class='terrain earth' id='earth'></button>
+        <button onclick="pickWater()" class='terrain water' id='water'></button>
+    </div>
+    <div id='objectChooseer' class='d-none static'>
+        <div>Objects</div>
+        <button class="object" id='+'> + </button>
+        <button class="object" id='@'> @</button>
+        <button class="object" id='#'> # </button>
+    </div>
+    <table class="static">
+        <tbody class="static" id="map">
+            
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>
+    
+<script>
+    const newMapForm = $('#newMapForm');
+    const terrainChooseer = $('#terrainChooseer');
+    const objectChooseer = $('#objectChooseer');
+    function showMapForm(){
+        newMapForm.removeClass('d-none');
+        
+    }
+    function generateMap(){
+        const rows = parseInt($('#rows').val());
+        const cells = parseInt($('#cells').val());
+        const map = $('#map');
+        terrainChooseer.removeClass('d-none');
+        objectChooseer.removeClass('d-none');
+        map.empty()
+        for(let i = 0; i < rows; i++) {
+                map.append(`<tr id=${i}></tr>`)
+                for(let j = 0; j < cells; j++) {
+                    $(`#${i}`).append(`<td id=${i}${j}><button class='cell' ></button></td>`)
+
+            }
+
+        }
+        newMapForm.addClass('d-none')
+
+    
+
+  
+        let myClass
+        $('.terrain').click(function(){
+            myText=''
+            myClass = $(this).attr('class')
+            console.log(myClass)
+        })
+
+        $('.object').click(function(){
+        
+            myText = $(this).text()
+            console.log(myText)
+        })
+
+         $(document).on('click', function (event) {
+            $target = $(event.target);
+            
+            console.log(($target).attr('class'))
+            if (!($target.hasClass('object')) && !($target.hasClass('static'))){
+                $target.empty();
+                $target.removeClass('earth');
+                $target.removeClass('water');
+                $target.addClass(`${myClass}`);
+                if (($target.hasClass('earth') || ($target.hasClass('water')))){
+                    if(($target.attr('id') != 'earth')&& ($target.attr('id') != 'water')){
+                        
+                        $target.append(`${myText}`);
+                    }
+                }
+                
+            }   
+        });
+    }
+</script>

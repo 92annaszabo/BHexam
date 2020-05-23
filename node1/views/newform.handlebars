@@ -1,0 +1,57 @@
+<div class='row'>
+    <div class='col-md-3'></div>
+    <div class='col-md-6'>
+        <form action ='/apply' method="POST" id='newForm' >
+            <div class='form-group'>
+                <label for='applicantName'>Name:</label>
+                <input type='text' class='form-control' name='applicantName' id='applicantName'>
+                <div id='noNameError' class='d-none error mt-2'>  
+                    Please add your name
+                </div>
+            </div>
+            <div class='form-group'>
+                <label for='applicantEmail'>Email:</label>
+                <input type='text' class='form-control' name='applicantEmail' id='applicantEmail'>
+                <div id='noEmailError' class='d-none error mt-2'>  
+                    Please add your email
+                </div>
+            </div>
+           
+                <div class="col-md-9 text-right">    
+                        <input type='submit' class='btn btn-primary' value='Send'>
+                </div>
+                
+            </div>
+
+        </form>
+    </div>
+    <div class='col-md-3'></div>
+</div>
+
+
+<script>
+
+     const form = document.querySelector('#newForm');
+     const nameField = document.querySelector('#applicantName');
+     const emailField = document.querySelector('#applicantEmail');
+     const noNameError = document.querySelector('#noNameError');
+     const noEmailError = document.querySelector('#noEmailError');
+     form.addEventListener('submit', checkInputFields);
+  
+     function checkInputFields(event) {
+        if(!nameField.value){
+            event.preventDefault();
+            noNameError.classList.remove('d-none');
+        }
+        else{
+            noNameError.classList.add('d-none');
+        }
+        if(!emailField.value){
+            event.preventDefault();
+            noEmailError.classList.remove('d-none');
+        }
+        else{
+            noEmailError.classList.add('d-none');
+        }
+     }
+</script>

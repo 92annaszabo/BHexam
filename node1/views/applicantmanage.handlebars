@@ -1,0 +1,74 @@
+<div  class='text-right'>
+
+    <a href='/applicants'>Back</a>
+</div>
+<h3>Waiting for first interview</h3> 
+
+
+
+    <table class=" table table-hover table-bordered mb-3">
+        <thead class='table'>
+            <th class='text-left p-3'> Name</th>
+            <th class='clear-border p-3'>Email</th>
+            <th class='clear-border p-3'>Operations</th>
+        </thead>
+        <tbody class='table'>
+            
+            {{#each interview1}}
+            <form action ='/manage/{{this.id}}' method="POST">
+
+                <tr>
+                    <td class='text-left clear-border p-3 d-none'> <input type='number' name='applicantStatus' value={{this.status}}> </td>
+                    <td class='text-left clear-border p-3'> {{this.name}} </td>
+                    <td class="text-right">{{this.email}}</td>
+                    <td class="text-right">
+                        <select id='interviewer' onchange="setInterviewer()">
+                            {{#each interviewers}}
+                                <option value='{{this.id}}'>{{this.name}}</option>
+                            {{/each}}
+                        </select>
+                        <input type='submit' name="reject" class='btn btn-primary' value='Reject application'>
+                        <input type='submit' name="approve" class='btn btn-primary' value='Next Interview'>
+                    </td>
+                </tr>
+            </form>
+            {{/each}}
+        
+        </tbody>
+    </table>
+
+
+<h3>Waiting for second interview</h3>
+<table class=" table table-hover table-bordered mb-3">
+    <thead class='table'>
+        <th class='text-left p-3'> Name</th>
+        <th class='clear-border p-3'>Email</th>
+        <th class='clear-border p-3'>Operations</th>
+    </thead>
+    <tbody class='table'>
+        
+        {{#each interview2}}
+            <form action ='/manage/{{this.id}}' method="POST">
+
+                <tr>
+                    <td class='text-left clear-border p-3 d-none'> <input type='number' name='applicantStatus' value={{this.status}}> </td>
+                    <td class='text-left clear-border p-3'> {{this.name}} </td>
+                    <td class="text-right">{{this.email}}</td>
+                    <td class="text-right">
+                        <input type='submit' name="reject" class='btn btn-primary' value='Reject application'>
+                        <input type='submit' name="approve" class='btn btn-primary' value='Approve application'>
+                    </td>
+                </tr>
+            </form>
+        {{/each}}
+       
+    </tbody>
+</table>
+
+
+<script>
+    let interviewer = $('#interviewer').val()
+    function setInterviewer(){
+        console.log(interviewer)
+    }
+</script>
